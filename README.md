@@ -36,3 +36,6 @@ Follow this project board to know the latest status of the project: [https://git
 bun install
 ```
 in both `bioguessr-client` and `bioguessr-server`.
+
+# Updated Functions
+- Marco: Updated homepage.jsx so that all menu button clicks have a sound effect
