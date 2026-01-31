@@ -4,7 +4,7 @@ import './App.css';
 import logoRect from '../assets/logos/logorect.webp'; 
 import bgImage from '../assets/homePageBG.png'; 
 import LeaderboardToggle from './LeaderboardToggle';
-
+import clickSound from '../assets/audio/click.mp3';
 
 const GAME_MODES = [
   {
@@ -40,6 +40,12 @@ function HomePage() {
   const [showRules, setShowRules] = useState(false);
   const navigate = useNavigate();
 
+  const playSound = () => {
+    const audio = new Audio(clickSound);
+    audio.volume = 0.4;
+    audio.play();
+  }
+
   useEffect(() => {
     const link = document.querySelector("link[rel~='icon']");
     if (link) {
@@ -68,7 +74,11 @@ function HomePage() {
               <button
                 key={mode.id}
                 className="mode-tile"
-                onClick={() => navigate(mode.path)}
+                onClick={() => {
+                  // call sound effect on click
+                  playSound();
+                  navigate(mode.path);
+                }}
               >
                 <div className="mode-tile-icon" style={{ background: `linear-gradient(135deg, ${mode.color}22, ${mode.color}44)` }}>
                   <span>{mode.icon}</span>
@@ -83,7 +93,11 @@ function HomePage() {
           </div>
 
           <div className="actions-row">
-            <button className="featured-action" onClick={() => navigate('/daily')}>
+            <button className="featured-action" onClick={() => {
+              // call sound effect on click
+              playSound();
+              navigate('/daily');
+            }}>
               <div className="featured-action-left">
                 <span className="featured-icon">📅</span>
                 <div>
@@ -97,15 +111,27 @@ function HomePage() {
 
           <div className="home-footer">
             <LeaderboardToggle />
-            <button className="link-btn" onClick={() => setShowRules(true)}>
+            <button className="link-btn" onClick={() => {
+              // call sound effect on click
+              playSound();
+              setShowRules(true);
+            }}>
               How to Play
             </button>
           </div>
         </div>
 
         {showRules && (
-          <div className="modal-overlay" onClick={() => setShowRules(false)}>
-            <div className="modal-content rules-modal" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-overlay" onClick={() => {
+            // call sound effect on click
+            playSound();
+            setShowRules(false);
+          }}>
+            <div className="modal-content rules-modal" onClick={(e) => {
+              // call sound effect on click
+              playSound();
+              e.stopPropagation();
+            }}>
               <h2>How To Play</h2>
               <div className="rules-list">
                 <div className="rule-item">
@@ -121,7 +147,11 @@ function HomePage() {
                   <p>Correct guesses earn points. Build streaks for bonus multipliers!</p>
                 </div>
               </div>
-              <button className="btn primary-btn" onClick={() => setShowRules(false)}>
+              <button className="btn primary-btn" onClick={() => {
+                // call sound effect on click
+                playSound();
+                setShowRules(false);
+              }}>
                 Got it!
               </button>
             </div>
